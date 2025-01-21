@@ -11,13 +11,11 @@ import { setTimeout } from "core-js";
 // }
 
 
-let trigger = true;
-
 export function read() {
     return new Promise((resolve, reject) => {
         // эмуляция чтения файла
+        const trigger = Math.random() > 0.5;
         if (trigger) {
-            trigger = !trigger;
             setTimeout(() => {
                 const data = '{"id":9,"created":1546300800,"userInfo":{"id":1,"name":"Hitman","level":10,"points":2000}}';
                 return (input => {
@@ -29,9 +27,7 @@ export function read() {
                     resolve(buffer);
                 })(data);
             }, 1000);
-        }
-        else {
-            trigger = !trigger;
+        } else {
             setTimeout(() => {
                 reject('File not found');
             }, 1000);
